@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>6.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Util.fs" />
+    <Compile Include="SolverConfiguration.fs" />
+    <Compile Include="GenerateSketchInstances.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../FsOmegaLib/FsOmegaLib.fsproj" />
+    <ProjectReference Include="../AutoHyperQCore/AutoHyperQCore.fsproj" />
+    <ProjectReference Include="../CATS/CATS.fsproj" />
+  </ItemGroup>
+  <PropertyGroup>
+    <OtherFlags>$(OtherFlags) --warnon:1182</OtherFlags>
+  </PropertyGroup>
+</Project>

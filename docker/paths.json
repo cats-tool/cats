@@ -1,0 +1,6 @@
+{
+    "autfilt":"/home/spot-2.11.5/bin/autfilt",
+    "ltl2tgba":"/home/spot-2.11.5/bin/ltl2tgba",
+    "randltl":"/home/spot-2.11.5/bin/randltl",
+    "randaut":"/home/spot-2.11.5/bin/randaut"
+}

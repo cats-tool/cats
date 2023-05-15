@@ -1,0 +1,32 @@
+FROM alpine:3.18.0
+
+RUN apk update
+RUN apk upgrade
+RUN apk add bash
+RUN apk add alpine-sdk
+RUN apk add dotnet7-sdk
+
+######################### Download and build spot #########################
+WORKDIR /home
+RUN wget https://www.lrde.epita.fr/dload/spot/spot-2.11.5.tar.gz
+RUN tar -xf spot-2.11.5.tar.gz
+WORKDIR /home/spot-2.11.5
+
+RUN ./configure --disable-python 
+RUN make 
+##################################################
+
+######################### Copy CATS and EvalSketchRandom and build #########################
+COPY src /home/src
+COPY eval/EvalSketchRandom /home/src/EvalSketchRandom
+
+WORKDIR /home/src/EvalSketchRandom
+RUN dotnet build -c "release" -o ../../app
+
+# Copy paths.json which points to local path of spot within the container
+COPY docker/paths.json /home/app/paths.json
+##################################################
+
+WORKDIR /home
+
+ENTRYPOINT ["/home/app/EvalSketchRandom"]
