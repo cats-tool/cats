@@ -110,8 +110,12 @@ let main args =
     | Util.AnalysisException err when raiseExceptions ->
         printfn $"Error: %s{err}"
         reraise ()
+    | AutoHyperQCore.Util.AutoHyperQCoreException err when raiseExceptions ->
+        printfn $"Error: %s{err}"
+        reraise ()
     | _ when raiseExceptions -> reraise ()
-    | Util.AnalysisException err ->
+    | Util.AnalysisException err 
+    | AutoHyperQCore.Util.AutoHyperQCoreException err ->
         printfn $"Error: %s{err}"
         exit -1
     | e ->

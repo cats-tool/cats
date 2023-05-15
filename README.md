@@ -3,7 +3,7 @@
 This repository contains CATS - a fully-automatic causality checker in reactive systems.
 To clone this repo and **initialize the submodules** run the following
 
-``` 
+```shell
 git clone https://github.com/cats-tool/cats
 cd cats
 git submodule init
@@ -11,7 +11,7 @@ git submodule update
 ```
 
 This README contains instructions on how to build CATS from sources. 
-For evaluation, you do **not** need to build CATS yourself; we provide Docker files.
+If you only want to reproduce the experiments from our paper, you do **not** need to build CATS yourself; we provide Docker files.
 Details on how to build the images and reproduce the results are given in `Reproduce_Experiments.md`.
 
 ## Structure 
@@ -70,7 +70,7 @@ For example, if `/usr/bin/autfilt` and `/usr/bin/randaut` are the absolute paths
 
 ## Run CATS
 
-After having built CATS and connected spot, you are ready for causality anayslsi. 
+After having built CATS and connected spot, you are ready for causality analysis. 
 The two basic input modes are *cause checking* and *cause sketching*.
 For the following, we assume that the current directory is the main tool folder. 
 
@@ -85,22 +85,30 @@ where `<path>` is the path to the checking instance.
 
 For example run
 ```shell
-app/CATS --check examples/intro_example.txt
+app/CATS --check examples/example_1.txt
 ```
-to check the cause verification problem in `examples/intro_example.txt`. 
+to check the cause verification problem in `examples/example_1.txt`. 
 The format itself should be self-explanatory. 
 We provide details in the paper.
 Note that the system can be given as any automation in the HANOI automaton format. 
 
 ### Cause Sketching
 
-To sketch a cause, i.e., explore multiple candidates,  you can run 
+To sketch a cause, i.e., explore multiple candidates, you can run 
 
 ```shell
 app/CATS --sketch <path>
 ```
 
 where `<path>` is the path to the sketching instance.
-The sketch format itself is similar to that for a checking instance. 
+The sketch format itself is similar to that of a checking instance. 
 The only difference is that the `[sketch]` field now can contain holes of the form `?{"<AP1>", "<AP2>", ..., "<APn>"}`, where <AP1>, <AP2>, ..., <APn> are APs (note that they must be escaped).
-This will explore all boolean combinations (at the moment only clauses) of the APs given in the set.
+This will explore all *conjunctive* boolean combinations of the APs given in the set.
+
+### Command Line Options
+
+In either of the two modes, you can use the following command-line options 
+
+- `--contingencies`: Use the contingency automata (see the paper for details)
+- `--log`: Print intermediate outputs, such as which stage is currently checked and how much time was used
+- `--log-mc`: Print intermediate outputs of the model-checking back-end
