@@ -11,7 +11,8 @@ git submodule update
 ```
 
 This README contains instructions on how to build CATS from sources. 
-If you only want to reproduce the experiments from our paper, you do **not** need to build CATS yourself; we provide Docker files.
+If you only want to reproduce the experiments from our paper, you do **not** need to build CATS yourself.
+Instead, we provide Docker files that handle all evlauation steps.
 Details on how to build the images and reproduce the results are given in `Reproduce_Experiments.md`.
 
 ## Structure 
