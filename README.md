@@ -1,7 +1,7 @@
 # CATS - Causal Analysis on Temporal Sequences
 
 This repository contains CATS - a fully-automatic causality checker in reactive systems.
-To clone this repo and **initialize the submodules** run the following
+To clone this repository and **initialize the submodules** run the following
 
 ```shell
 git clone https://github.com/cats-tool/cats
@@ -12,15 +12,15 @@ git submodule update
 
 This README contains instructions on how to build CATS from sources. 
 If you only want to reproduce the experiments from our paper, you do **not** need to build CATS yourself.
-Instead, we provide Docker files that handle all evlauation steps.
+Instead, we provide Docker files that handle all evaluation steps.
 Details on how to build the images and reproduce the results are given in `Reproduce_Experiments.md`.
 
 ## Structure 
 
-- `src/` contains the source code of CATS (written in F#). 
-- `app/` is the target folder for the build. The final CATS executable will be placed here.
+- `src/` contains the source code of CATS (written in F#)
+- `app/` is the target folder for the build. The final CATS executable will be placed here
 - `examples/` contains example cause checking instances
-- `docker/` contains various files needed to construct a Docker container of CATS 
+- `docker/` contains various files needed to construct a Docker image of CATS 
 - `eval/` contains additional source code that is used to evaluate CATS
 
 
@@ -54,13 +54,13 @@ Afterward, the CATS executable (called `CATS`) is located in the `app/` folder.
 
 ### Connect spot to CATS
 
-CATS uses the spot executables *autfilt* and *ltl2tgba*.
+CATS uses the [spot](https://spot.lrde.epita.fr/) executables *autfilt* and *ltl2tgba*.
 CATS is designed such that it only needs the **absolute** path to these executables, so they can be installed and placed at whatever locations fits best.
 The absolute paths are specified in a `paths.json` configuration file. 
 This file must be located in the *same* directory as the CATS executables (this convention makes it easy to find the config file, independent of the relative path CATS is called from). 
 We already provide a template file `app/paths.json` that *needs to be modified*. 
 After having built spot and CATS, paste the absolute path to the *autfilt* and *ltl2tgba* executables to the `paths.json` file. 
-For example, if `/usr/bin/autfilt` and `/usr/bin/ltl2tgba` are the absolute paths to the *autfilt* and *ltl2tgba*, respectively, the content of `app/paths.json` should be
+For example, if `/usr/bin/autfilt` and `/usr/bin/ltl2tgba` are the absolute paths to the *autfilt* and *ltl2tgba* executables, respectively, the content of `app/paths.json` should be
 
 ```json
 {
@@ -91,7 +91,7 @@ app/CATS --check examples/example_1.txt
 to check the cause verification problem in `examples/example_1.txt`. 
 The format itself should be self-explanatory. 
 We provide details in the paper.
-Note that the system can be given as any automation in the HANOI automaton format. 
+Note that the system can be given as any automation in the [HANOI](http://adl.github.io/hoaf/) automaton format. 
 
 ### Cause Sketching
 
@@ -108,7 +108,7 @@ This will explore all *conjunctive* boolean combinations of the APs given in the
 
 ### Command Line Options
 
-In either of the two modes, you can use the following command-line options 
+In either of the two modes, you can use the following optional command-line options:
 
 - `--contingencies`: Use the contingency automata (see the paper for details)
 - `--log`: Print intermediate outputs, such as which stage is currently checked and how much time was used
