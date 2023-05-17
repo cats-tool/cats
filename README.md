@@ -54,18 +54,18 @@ Afterward, the CATS executable (called `CATS`) is located in the `app/` folder.
 
 ### Connect spot to CATS
 
-CATS uses the spot executables *autfilt* and *randaut*.
+CATS uses the spot executables *autfilt* and *ltl2tgba*.
 CATS is designed such that it only needs the **absolute** path to these executables, so they can be installed and placed at whatever locations fits best.
 The absolute paths are specified in a `paths.json` configuration file. 
 This file must be located in the *same* directory as the CATS executables (this convention makes it easy to find the config file, independent of the relative path CATS is called from). 
 We already provide a template file `app/paths.json` that *needs to be modified*. 
 After having built spot and CATS, paste the absolute path to the *autfilt* and *ltl2tgba* executables to the `paths.json` file. 
-For example, if `/usr/bin/autfilt` and `/usr/bin/randaut` are the absolute paths to the *autfilt* and *randaut*, respectively, the content of `app/paths.json` should be
+For example, if `/usr/bin/autfilt` and `/usr/bin/ltl2tgba` are the absolute paths to the *autfilt* and *ltl2tgba*, respectively, the content of `app/paths.json` should be
 
 ```json
 {
     "autfilt":"/usr/bin/autfilt",
-    "randaut":"/usr/bin/randaut"
+    "ltl2tgba":"/usr/bin/ltl2tgba"
 }
 ```
 
