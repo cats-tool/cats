@@ -103,8 +103,8 @@ app/CATS --sketch <path>
 
 where `<path>` is the path to the sketching instance.
 The sketch format itself is similar to that of a checking instance. 
-The only difference is that the `[sketch]` field now can contain holes of the form `?{"<AP1>", "<AP2>", ..., "<APn>"}`, where <AP1>, <AP2>, ..., <APn> are APs (note that they must be escaped).
-This will explore all *conjunctive* boolean combinations of the APs given in the set.
+The only difference is that the `[sketch]` field now can contain holes of the form `?{"<AP1>", "<AP2>", ..., "<APn>"}`, where `<AP1>`, `<AP2>`, ..., `<APn>` are APs (note that they must be escaped).
+This will, by default, explore all *conjunctive* boolean combinations of the APs given in the set.
 
 ### Command Line Options
 
