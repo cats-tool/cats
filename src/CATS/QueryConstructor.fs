@@ -67,7 +67,7 @@ let traceMinimality
     And(subsetOfChanges, existsChange)
 
 
-type CausalityQuerie<'T when 'T: comparison> = 
+type CausalityQuery<'T when 'T: comparison> = 
     {
         PC1 : HyperQPTL<'T>
         PC2 : HyperQPTL<'T>

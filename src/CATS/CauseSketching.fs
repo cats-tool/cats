@@ -14,7 +14,6 @@ open CauseChecking
 type SketchMode = 
     | PostiveConjunction
     | PositiveAndNegativeConjunction
-    | FullFormula
 
 type CauseSketchingOptions = 
     {
@@ -30,18 +29,6 @@ type CauseSketchingOptions =
 
     member this.LoggerN s = this.Logger (s + "\n")
 
-
-
-type CauseCandidateInfo = 
-    {
-        IsPruned : bool 
-        Time : int64
-    }
-
-type CauseSketchingStatistics = 
-    {
-        InfosPerCandidate : list<CauseCandidateInfo>
-    }
 
 let private allPositiveConjunctions (aps : list<String>) = 
     Util.computeBooleanPowerSet (List.length aps)
@@ -81,7 +68,6 @@ let exploreCauseSketch
         match options.SketchMode with 
         | PostiveConjunction -> allPositiveConjunctions
         | PositiveAndNegativeConjunction -> allPositiveAndNegativeConjunctions
-        | _ -> failwith ""
 
     let checkingOptions = 
         {
@@ -100,13 +86,13 @@ let exploreCauseSketch
     let rec search (attemptCount : int, nonPrunedAttemptCount : int) (candidates : seq<QPTL<String,String>>) = 
         if options.MaximalNumberOfAttempts.IsSome && attemptCount > options.MaximalNumberOfAttempts.Value then 
             options.LoggerN "Reached the maximal cutoff bound"
-            None, {InfosPerCandidate = []}
+            None
         elif options.MaximalNumberOfNonPrunedAttempts.IsSome && nonPrunedAttemptCount > options.MaximalNumberOfNonPrunedAttempts.Value then 
             options.LoggerN "Reached the maximal cutoff bound (non-pruned attempts)"
-            None, {InfosPerCandidate = []}
+            None
         else 
             match Seq.tryHead candidates with 
-            | None -> None, {InfosPerCandidate = []}
+            | None -> None
             | Some causeCandidate -> 
                 options.LoggerN "================= ================="
                 let causeString = QPTL.print (fun x -> "\"" + x + "\"") (fun x -> "\"" + x + "\"") causeCandidate
@@ -118,18 +104,15 @@ let exploreCauseSketch
                     if not holdsOnLasso then 
                         false, true
                     else 
-                        let r, _ = checkPotentialCause config checkingOptions system lasso causeCandidate effect inputs
+                        let r = checkPotentialCause config checkingOptions system lasso causeCandidate effect inputs
                         r, false
 
-                let info = {CauseCandidateInfo.IsPruned = isPruned; Time = sw.ElapsedMilliseconds}
-
                 if isCause then 
-                    Some (causeCandidate), {InfosPerCandidate = [info]}
+                    Some (causeCandidate)
                 else 
-                    let r, li = search (attemptCount + 1, nonPrunedAttemptCount + if isPruned then 0 else 1) (Seq.tail candidates)
-                    r, {InfosPerCandidate = info :: li.InfosPerCandidate}
+                    let r = search (attemptCount + 1, nonPrunedAttemptCount + if isPruned then 0 else 1) (Seq.tail candidates)
+                    r
 
-            
     search (0, 0) allCauseCandidates
 
 

@@ -56,8 +56,7 @@ let main args =
                     RaiseExceptions = raiseExceptions
                 }
 
-            let res, _ =
-                CauseChecking.checkPotentialCause config options instance.System instance.Lasso instance.Cause instance.Effect instance.Inputs
+            let res = CauseChecking.checkPotentialCause config options instance.System instance.Lasso instance.Cause instance.Effect instance.Inputs
 
             options.LoggerN ""
             if res then printfn "Is Cause" else printfn "No Cause"
@@ -89,8 +88,7 @@ let main args =
                     RaiseExceptions = raiseExceptions
                 }
 
-            let res, _ =
-                CauseSketching.exploreCauseSketch config options instance.System instance.Lasso instance.CauseSketch instance.Effect instance.Inputs
+            let res = CauseSketching.exploreCauseSketch config options instance.System instance.Lasso instance.CauseSketch instance.Effect instance.Inputs
 
             options.LoggerN ""
 

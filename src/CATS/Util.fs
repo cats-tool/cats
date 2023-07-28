@@ -5,7 +5,6 @@ open System.Collections.Generic
 
 exception AnalysisException of String 
 
-/// Given a number n, computes all lists of booleans of length n 
 let rec computeBooleanPowerSet n =
     if n = 0 then
         Seq.singleton []

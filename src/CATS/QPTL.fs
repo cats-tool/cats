@@ -115,8 +115,6 @@ module QPTL =
             | Forall(q, e) -> "(" + "A" + propStringer q + ". " + print atomStringer propStringer e + ")"
 
 
-
-
 type QPTLQuantifier<'L> = 
     | QPTLForall of 'L
     | QPTLExists of 'L

@@ -65,7 +65,7 @@ module LassoTrace =
         else
             lasso.Loop[(i - lasso.Prefix.Length) % lasso.Loop.Length]
 
-    // Construct a system that generted exactly this lasso trace
+    // Construct a system that generates exactly this lasso trace
     let constructSystem (lasso : LassoTrace<'L>) =
         let states = [0..(length lasso) - 1] |> set
 
