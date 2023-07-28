@@ -1,3 +1,6 @@
 [submodule "src/FsOmegaLib"]
 	path = src/FsOmegaLib
 	url = https://github.com/ravenbeutner/FsOmegaLib.git
+[submodule "src/AutoHyperQCore"]
+	path = src/AutoHyperQCore
+	url = https://github.com/ravenbeutner/AutoHyperQCore

@@ -283,7 +283,7 @@ module Parser =
                         Inputs = inputs
                     }
                     |> Result.Ok 
-                | Fail msg -> Result.Error $"Failure when obtaining GNBA from string: %s{msg}"
+                | Fail msg -> Result.Error $"Failure when obtaining GNBA from string: %s{msg.DebugInfo}"
                 
                 )
 
@@ -312,7 +312,7 @@ module Parser =
                         Inputs = inputs
                     }
                     |> Result.Ok 
-                | Fail msg -> Result.Error $"Failure when obtaining GNBA from string: %s{msg}"
+                | Fail msg -> Result.Error $"Failure when obtaining GNBA from string: %s{msg.DebugInfo}"
                 
                 )
             
